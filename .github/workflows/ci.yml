@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Kiem tra cu phap
+        run: python -m compileall -q common server client scripts tests
+
+      - name: Chay test
+        run: python -m unittest discover -s tests -v
