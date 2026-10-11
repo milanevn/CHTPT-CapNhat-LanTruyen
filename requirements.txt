@@ -1,0 +1,1 @@
+# Chi dung thu vien chuan Python. Khong them thu vien ngoai (Hop dong chung, muc 4.3).

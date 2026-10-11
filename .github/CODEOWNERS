@@ -1,0 +1,9 @@
+# File dung chung: can trưởng nhóm HOAC TV2 duyet.
+
+# Co 2 nguoi de khi trưởng nhóm tu sua thi TV2 duyet (GitHub khong cho tu duyet PR cua minh).
+
+/common/ @<username-truong-nhom> @<username-tv2>
+/server/main.py @<username-truong-nhom> @<username-tv2>
+/client/main.py @<username-truong-nhom> @<username-tv2>
+/.github/ @<username-truong-nhom> @<username-tv2>
+/tests/test_smoke.py @<username-truong-nhom> @<username-tv2>
