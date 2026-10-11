@@ -56,14 +56,3 @@ N và T thay đổi được khi hệ thống đang chạy.
 | Truyền thông | TCP socket, JSON                  |
 | Lưu trữ      | SQLite                            |
 | CI           | GitHub Actions                    |
-
-## Bắt đầu nhanh
-
-Yêu cầu: Windows, Python 3.10+.
-
-```
-git clone https://github.com/<user>/CHTPT-CapNhat-LanTruyen.git
-cd CHTPT-CapNhat-LanTruyen
-
-python scripts/run_all.py      # khởi động 4 máy
-```
