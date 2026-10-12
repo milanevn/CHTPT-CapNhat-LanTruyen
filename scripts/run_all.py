@@ -1,1 +1,4 @@
-"""Bat nhanh 4 may chu tren mot may de demo. Phu trach: TV1."""
+"""Bật nhanh 4 máy chủ trên một máy để demo. Phụ trách: TV1.
+
+Chạy từ thư mục gốc repo: python -m scripts.run_all
+"""
