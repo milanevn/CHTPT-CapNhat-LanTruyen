@@ -28,6 +28,7 @@ MODULES = [
     "server.main",
     "client.main",
     "scripts.run_all",
+    "scripts.check_env",
 ]
 
 
