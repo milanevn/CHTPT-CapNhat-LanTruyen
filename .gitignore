@@ -6,7 +6,12 @@ __pycache__/
 data/
 *.db
 *.db-journal
+*.db-wal
+*.db-shm
 *.sqlite3
+
+# Cau hinh rieng tung may (doi IP, doi N/T de thu) - KHONG dua len Git 
+common/config.local.json
 
 # Moi truong / editor
 .venv/
@@ -14,7 +19,8 @@ venv/
 .vscode/
 .idea/
 
-# Windows
+# Windows / macOS
 Thumbs.db
 desktop.ini
 *.log
+.DS_Store
