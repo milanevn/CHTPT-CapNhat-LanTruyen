@@ -1,1 +1,21 @@
-{}
+{
+  "primary": "S1",
+  "nodes": {
+    "S1": {"host": "127.0.0.1", "port": 5001},
+    "S2": {"host": "127.0.0.1", "port": 5002},
+    "S3": {"host": "127.0.0.1", "port": 5003},
+    "S4": {"host": "127.0.0.1", "port": 5004}
+  },
+  "replication": [
+    {"from": "S1", "to": "S2", "mode": "immediate"},
+    {"from": "S1", "to": "S3", "mode": "periodic"},
+    {"from": "S2", "to": "S4", "mode": "batch"}
+  ],
+  "batch_n": 5,
+  "period_t_seconds": 10,
+  "ack_timeout_seconds": 2.0,
+  "max_retries": 3,
+  "heartbeat_interval_seconds": 1.0,
+  "heartbeat_miss_limit": 3,
+  "data_dir": "data"
+}
