@@ -6,9 +6,19 @@ on:
   push:
     branches: [main, develop]
 
+# PR được push thêm commit thì hủy lần chạy cũ, chỉ chạy bản mới nhất
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  # Tên job "test" đang là required check trong ruleset. KHÔNG đổi tên.
   test:
     runs-on: windows-latest
+    timeout-minutes: 10
+    env:
+      # Log in được tiếng Việt. Chỉ ảnh hưởng chữ in ra màn hình, không ảnh hưởng open().
+      PYTHONIOENCODING: utf-8
     steps:
       - uses: actions/checkout@v4
 
@@ -19,5 +29,25 @@ jobs:
       - name: Kiem tra cu phap
         run: python -m compileall -q common server client scripts tests
 
+      # -W error::EncodingWarning: báo lỗi khi open() thiếu encoding="utf-8".
+      # Trên Windows, thiếu encoding sẽ đọc file theo cp1252 và làm hỏng tiếng Việt.
       - name: Chay test
+        run: python -X warn_default_encoding -W error::EncodingWarning -m unittest discover -s tests -v
+
+      - name: Kiem tra moi truong
+        run: python -m scripts.check_env
+
+  # Tài liệu ghi hỗ trợ Python 3.10+, job này kiểm tra lời hứa đó.
+  # Không nằm trong required check: đỏ thì xem log và sửa, nhưng không chặn merge.
+  test-py310:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Chay test tren Python 3.10
         run: python -m unittest discover -s tests -v
