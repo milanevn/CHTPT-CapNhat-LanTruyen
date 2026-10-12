@@ -1,0 +1,16 @@
+# Repo luôn lưu LF, máy Windows cũng lấy về LF -> không còn cảnh báo
+# "LF will be replaced by CRLF", không có diff cả file chỉ vì xuống dòng.
+* text=auto eol=lf
+
+# Script chạy trên Windows cần CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# File nhị phân: không đổi xuống dòng, không diff
+*.png binary
+*.jpg binary
+*.db binary
+*.sqlite3 binary
+*.docx binary
+*.pdf binary
