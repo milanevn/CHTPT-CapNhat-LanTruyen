@@ -56,7 +56,8 @@ class ProtocolTest(unittest.TestCase):
 
 class ConfigTest(unittest.TestCase):
     def setUp(self):
-        self.cfg = config.load()
+        # Luôn test file chung trong repo, không bị config.local.json của từng máy ảnh hưởng
+        self.cfg = config.load(config.CONFIG_PATH)
 
     def test_four_nodes_on_distinct_ports(self):
         ports = [config.address(self.cfg, n)[1] for n in config.NODE_IDS]
@@ -72,6 +73,23 @@ class ConfigTest(unittest.TestCase):
             [("S2", "immediate"), ("S3", "periodic")],
         )
         self.assertEqual(config.downstreams(self.cfg, "S2"), [("S4", "batch")])
+
+    def test_bad_config_raises_value_error(self):
+        import copy
+
+        bad_cases = [
+            lambda c: c["nodes"]["S2"].update(port="5002"),
+            lambda c: c["nodes"]["S3"].update(port=5001),
+            lambda c: c["replication"][0].pop("mode"),
+            lambda c: c.update(primary="S9"),
+            lambda c: c.update(batch_n=0),
+        ]
+        for i, mutate in enumerate(bad_cases):
+            with self.subTest(case=i):
+                cfg = copy.deepcopy(self.cfg)
+                mutate(cfg)
+                with self.assertRaises(ValueError):
+                    config._validate(cfg)
 
 
 if __name__ == "__main__":
