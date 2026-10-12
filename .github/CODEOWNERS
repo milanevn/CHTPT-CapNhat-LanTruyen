@@ -1,3 +1,14 @@
-# Trưởng nhóm duyệt mọi pull request
+# File dùng chung: PR đụng vào phải có trưởng nhóm hoặc TV2 duyệt.
 
-- @milanevn
+# File còn lại: 1 thành viên bất kỳ duyệt là đủ.
+
+/common/ @milanevn @minhthong041
+/server/main.py @milanevn @minhthong041
+/client/main.py @milanevn @minhthong041
+/tests/test_smoke.py @milanevn @minhthong041
+/.github/ @milanevn @minhthong041
+/docs/ @milanevn @minhthong041
+/README.md @milanevn @minhthong041
+/requirements.txt @milanevn @minhthong041
+/.gitignore @milanevn @minhthong041
+/.gitattributes @milanevn @minhthong041
